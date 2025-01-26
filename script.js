@@ -16,9 +16,9 @@ const all_data_show = (data) => {
   data.forEach((data_element) => {
     const new_div = document.createElement("div");
     // console.log(data_element.id);
-    
+
     new_div.innerHTML = `
-         <div id="" class="bg-white rounded-lg shadow-lg w-[487px] h-[617px]">
+         <div id="" class="bg-white rounded-lg shadow-lg w-[487px] h-[617px] ">
           <!-- Image Section -->
      <div class="flex justify-center items-center" id="">
         <img
@@ -78,7 +78,7 @@ const all_data_show = (data) => {
                 </svg>
               </div>
                <div class="flex justify-center ">
-      <button onclick="single_id(${(data_element.id)})" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+      <button  onclick="single_id(${data_element.id});" class="bg-blue-600 relative text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
         show details
       </button>
     </div>
@@ -96,25 +96,25 @@ const all_data_show = (data) => {
 all_mobile_data();
 
 const single_id = async (newid) => {
- const id= newid.toString().padStart(2, '0');
-  
+  const id = newid.toString().padStart(2, "0");
+
   const single_content = await fetch(
     ` https://openapi.programming-hero.com/api/ai/tool/${id}`
   );
   const single_id = await single_content.json();
-  const single_data=single_id.data;
+  const single_data = single_id.data;
   // console.log(single_data);
   modam_document(single_data);
 };
+const main_modam = document.getElementById("modam_main");
+const modam_container = document.getElementById("container");
 
-const modam_document=(single_data)=>{
+const modam_document = (single_data) => {
   console.log(single_data);
-  const main_modam=document.getElementById('modam_main');
-  main_modam.classList.remove('hidden');
-  const modam_container=document.getElementById('container'); 
-  const new_div=document.createElement('div');
-  new_div.classList=`relative bg-white w-[1272px] h-[789px]  flex justify-center items-center rounded-xl shadow-lg  gap-5`;
-  new_div.innerHTML=`
+  main_modam.classList.remove("hidden");
+  const new_div = document.createElement("div");
+  new_div.classList = `relative bg-white w-[1272px] h-[789px]  flex justify-center items-center rounded-xl shadow-lg  gap-5`;
+  new_div.innerHTML = `
    <button class="absolute top-2 right-2 text-red-500 hover:text-red-700">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -155,9 +155,9 @@ const modam_document=(single_data)=>{
           <div>
             <h3 class="font-semibold text-lg text-gray-800 mb-5">Integrations</h3>
             <ul class="text-base text-gray-600 list-disc pl-4">
-              <li>FB Messenger</li>
-              <li>Slack</li>
-              <li>Telegram</li>
+              <li>${single_data.integrations[0]}</li>
+              <li>${single_data.integrations[1]}</li>
+              <li>${single_data.integrations[2]}</li>
             </ul>
           </div>
         </div>
@@ -175,7 +175,22 @@ const modam_document=(single_data)=>{
           I'm doing well, thank you for asking. How can I assist you today?
         </p>
       </div>
-  `
+  `;
   modam_container.appendChild(new_div);
-}
+  center_position();
+};
+const show_button = document.getElementById("show-button");
 
+const center_position = (data) => {
+  console.log(show_button);
+  // console.log(main_modam);
+  show_button.addEventListener("click", function (event) {
+    const x = event.clientX;
+    const y = event.clientY;
+    main_modam.style.top = `${y}px`;
+    main_modam.style.left = `${x}px`;
+  });
+
+  show_button.classList.add("relative");
+  main_modam.classList.add("absolute");
+};
