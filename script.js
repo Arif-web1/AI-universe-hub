@@ -4,7 +4,7 @@ const all_mobile_data = async () => {
   );
   const response = await mobile_data.json();
   const data = response.data;
-  // console.log(data);
+  // console.log(data.tools);
   all_data_show(data.tools);
 };
 
@@ -15,6 +15,8 @@ const all_data_show = (data) => {
 
   data.forEach((data_element) => {
     const new_div = document.createElement("div");
+    // console.log(data_element.id);
+    
     new_div.innerHTML = `
          <div id="" class="bg-white rounded-lg shadow-lg w-[487px] h-[617px]">
           <!-- Image Section -->
@@ -76,7 +78,7 @@ const all_data_show = (data) => {
                 </svg>
               </div>
                <div class="flex justify-center ">
-      <button class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+      <button onclick="single_id(${(data_element.id)})" class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
         show details
       </button>
     </div>
@@ -93,12 +95,88 @@ const all_data_show = (data) => {
 
 all_mobile_data();
 
-const single_id = async () => {
+const single_id = async (newid) => {
+ const id= newid.toString().padStart(2, '0');
+  
   const single_content = await fetch(
-    ` https://openapi.programming-hero.com/api/ai/tool/01`
+    ` https://openapi.programming-hero.com/api/ai/tool/${id}`
   );
   const single_id = await single_content.json();
   const single_data=single_id.data;
-  console.log(single_data);
+  // console.log(single_data);
+  modam_document(single_data);
 };
-single_id();
+
+const modam_document=(single_data)=>{
+  console.log(single_data);
+  const main_modam=document.getElementById('modam_main');
+  main_modam.classList.remove('hidden');
+  const modam_container=document.getElementById('container'); 
+  const new_div=document.createElement('div');
+  new_div.classList=`relative bg-white w-[1272px] h-[789px]  flex justify-center items-center rounded-xl shadow-lg  gap-5`;
+  new_div.innerHTML=`
+   <button class="absolute top-2 right-2 text-red-500 hover:text-red-700">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+  
+      <!-- Left Section -->
+      <div class=" border w-[487px] h-[511px] rounded-2xl ps-4 border-red-200 bg-red-50">
+        <p class="font-semibold text-2xl text-gray-900 mb-4 p-4">
+          ChatGPT is an AI-powered  chatbot platform that uses 
+           OpenAI's GPT technology to  simulate human conversation.
+        </p>
+        <div class="flex justify-between mb-4 mt-6 px-4">
+          <div class="bg-white text-green-600 text-center  rounded-md shadow-md w-32 h-24 flex flex-col justify-center items-center ">
+            <p class="text-lg font-semibold">$10/</p> 
+            <p class="text-lg" id="">month</p>
+            <p class="text-lg">Basic</p>
+          </div>
+          <div class="bg-white text-orange-600 text-center p-2 rounded-md shadow-md w-32 h-24 flex flex-col justify-center items-center">
+            <p class="text-font-semibold  text-lg">$50/</p> 
+            <p class=" text-lg" id="">month</p>
+            <p class=" text-lg">Pro</p>
+          </div>
+          <div class="bg-white text-red-600 text-center p-2 rounded-md shadow-md  w-32 h-24 flex flex-col justify-center items-center">
+            <p class="texm font-semibold text-lg">Contact us</p> 
+            <p class=" text-lg" id="">month</p>
+            <p class=" text-lg">Enterprise</p>
+          </div>
+        </div>
+        <div class="flex gap-16 px-4">
+          <div>
+            <h3 class="font-semibold text-lg text-gray-800 mb-5">Features</h3>
+            <ul class="text-base text-gray-600 list-disc pl-4">
+              <li>Customizable responses</li>
+              <li>Multilingual support</li>
+              <li>Seamless integration</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-semibold text-lg text-gray-800 mb-5">Integrations</h3>
+            <ul class="text-base text-gray-600 list-disc pl-4">
+              <li>FB Messenger</li>
+              <li>Slack</li>
+              <li>Telegram</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Right Section -->
+      <div class=" w-[487px] h-[511px] border rounded-2xl p-4 border-gray-200 bg-gray-50">
+        <div class="flex justify-center mb-4">
+          <img src="https://via.placeholder.com/150" alt="ChatGPT Logo" class="rounded-lg w-[437px] h-[339px]">
+        </div>
+        <h3 class="text-center font-semibold text-lg text-gray-900 mb-2">
+          Hi, how are you doing today?
+        </h3>
+        <p class="text-center text-lg text-gray-600">
+          I'm doing well, thank you for asking. How can I assist you today?
+        </p>
+      </div>
+  `
+  modam_container.appendChild(new_div);
+}
+
