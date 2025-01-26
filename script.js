@@ -30,9 +30,9 @@ const all_data_show = (data) => {
           <div class="p-6">
             <h2 class="text-2xl  font-semibold mb-4">Features</h2>
             <ul class="list-decimal list-inside text-gray-700 space-y-1">
-              <li>Natural language processing</li>
-              <li>Contextual understanding</li>
-              <li>Text generation</li>
+              <li>${data_element.features[0]}</li>
+              <li>${data_element.features[1]}</li>
+              <li>${data_element.features[2]}</li>
             </ul>
             
             <!-- Footer Section -->
@@ -59,7 +59,7 @@ const all_data_show = (data) => {
                       d="M8.25 2.25v1.5m7.5-1.5v1.5M3 9h18M4.5 6.75h15a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 19.5V9a2.25 2.25 0 012.25-2.25z"
                     />
                   </svg>
-                  11/01/2022
+                  ${data_element.published_in}
                 </div>
                 <!-- Arrow Icon -->
                 <svg
@@ -124,8 +124,7 @@ const modam_document=(single_data)=>{
       <!-- Left Section -->
       <div class=" border w-[487px] h-[511px] rounded-2xl ps-4 border-red-200 bg-red-50">
         <p class="font-semibold text-2xl text-gray-900 mb-4 p-4">
-          ChatGPT is an AI-powered  chatbot platform that uses 
-           OpenAI's GPT technology to  simulate human conversation.
+         ${single_data.description}
         </p>
         <div class="flex justify-between mb-4 mt-6 px-4">
           <div class="bg-white text-green-600 text-center  rounded-md shadow-md w-32 h-24 flex flex-col justify-center items-center ">
@@ -148,9 +147,9 @@ const modam_document=(single_data)=>{
           <div>
             <h3 class="font-semibold text-lg text-gray-800 mb-5">Features</h3>
             <ul class="text-base text-gray-600 list-disc pl-4">
-              <li>Customizable responses</li>
-              <li>Multilingual support</li>
-              <li>Seamless integration</li>
+              <li>${single_data.features[1].feature_name}</li>
+              <li>${single_data.features[2].feature_name}</li>
+              <li>${single_data.features[3].feature_name}</li>
             </ul>
           </div>
           <div>
@@ -167,7 +166,7 @@ const modam_document=(single_data)=>{
       <!-- Right Section -->
       <div class=" w-[487px] h-[511px] border rounded-2xl p-4 border-gray-200 bg-gray-50">
         <div class="flex justify-center mb-4">
-          <img src="https://via.placeholder.com/150" alt="ChatGPT Logo" class="rounded-lg w-[437px] h-[339px]">
+          <img src="${single_data.image_link[0]}" alt="ChatGPT Logo" class="rounded-lg w-[437px] h-[339px]">
         </div>
         <h3 class="text-center font-semibold text-lg text-gray-900 mb-2">
           Hi, how are you doing today?
