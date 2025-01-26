@@ -9,12 +9,12 @@ const all_mobile_data = async () => {
 };
 
 const all_data_show = (data) => {
-//   console.log(data);
+  //   console.log(data);
   const card_div = document.getElementById("card-div");
   const main_div = document.getElementById("main-div");
 
   data.forEach((data_element) => {
-    const new_div=document.createElement('div');
+    const new_div = document.createElement("div");
     new_div.innerHTML = `
          <div id="" class="bg-white rounded-lg shadow-lg w-[487px] h-[617px]">
           <!-- Image Section -->
@@ -75,9 +75,16 @@ const all_data_show = (data) => {
                   />
                 </svg>
               </div>
+               <div class="flex justify-center ">
+      <button class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+        show details
+      </button>
+    </div>
             </div>
           </div>
+         
         </div>
+         
     
     `;
     card_div.appendChild(new_div);
@@ -85,3 +92,13 @@ const all_data_show = (data) => {
 };
 
 all_mobile_data();
+
+const single_id = async () => {
+  const single_content = await fetch(
+    ` https://openapi.programming-hero.com/api/ai/tool/01`
+  );
+  const single_id = await single_content.json();
+  const single_data=single_id.data;
+  console.log(single_data);
+};
+single_id();
