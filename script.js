@@ -115,7 +115,7 @@ const modam_document = (single_data) => {
   const new_div = document.createElement("div");
   new_div.classList = `relative bg-white w-[1272px] h-[789px]  flex justify-center items-center rounded-xl shadow-lg  gap-5`;
   new_div.innerHTML = `
-   <button class="absolute top-2 right-2 text-red-500 hover:text-red-700">
+   <button onclick='close_modal()' class="absolute top-2 right-2 text-red-500 hover:text-red-700">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -184,5 +184,10 @@ const modam_document = (single_data) => {
 
 const modam=()=>{
   main_modam.classList.remove('hidden');
-  
+
+}
+
+const close_modal=()=>{
+  main_modam.classList.add('hidden');
+  modam_container.innerHTML='';
 }
