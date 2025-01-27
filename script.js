@@ -78,7 +78,7 @@ const all_data_show = (data) => {
                 </svg>
               </div>
                <div class="flex justify-center ">
-      <button  onclick="single_id(${data_element.id});" class="bg-blue-600 relative text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
+      <button  onclick="single_id(${data_element.id});modam()" class="bg-blue-600 relative text-white font-semibold py-2 px-6 rounded-lg hover:bg-blue-700 transition duration-200">
         show details
       </button>
     </div>
@@ -104,14 +104,14 @@ const single_id = async (newid) => {
   const single_id = await single_content.json();
   const single_data = single_id.data;
   // console.log(single_data);
-  modam_document(single_data);
+modam_document(single_data);
 };
 const main_modam = document.getElementById("modam_main");
 const modam_container = document.getElementById("container");
 
 const modam_document = (single_data) => {
   console.log(single_data);
-  main_modam.classList.remove("hidden");
+
   const new_div = document.createElement("div");
   new_div.classList = `relative bg-white w-[1272px] h-[789px]  flex justify-center items-center rounded-xl shadow-lg  gap-5`;
   new_div.innerHTML = `
@@ -177,20 +177,12 @@ const modam_document = (single_data) => {
       </div>
   `;
   modam_container.appendChild(new_div);
-  center_position();
+  
 };
-const show_button = document.getElementById("show-button");
+// const show_button = document.getElementById("show-button");
 
-const center_position = (data) => {
-  console.log(show_button);
-  // console.log(main_modam);
-  show_button.addEventListener("click", function (event) {
-    const x = event.clientX;
-    const y = event.clientY;
-    main_modam.style.top = `${y}px`;
-    main_modam.style.left = `${x}px`;
-  });
 
-  show_button.classList.add("relative");
-  main_modam.classList.add("absolute");
-};
+const modam=()=>{
+  main_modam.classList.remove('hidden');
+  
+}
